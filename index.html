@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lithium PLUS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    button { background-color: rgb(129, 35, 136); border-radius: 12px; width: 120px; color: azure; border-style: solid; border-color: rgb(193, 73, 201);}
+</style>
+<body>
+    <center>
+        <div class="spacer"></div>
+    <div class="rndrecauth" id="content">
+       <p></p>
+    <h1>LITHIUM PLUS</h1>
+    <p>AUTHENTICATION SERVICES</p>
+    <div class="spacer"></div>
+
+    <form id="tokenForm">
+        <label for="tokenInput"></label>
+        <input type="text" id="tokenInput" name="token" placeholder="Enter token">
+        <div id="content" style="display: none;">
+            <h2></h2>
+            <p style="font-size: 80%;">If you arnt redirected, click <a href="home.html" style="color: azure;">here</a></p>
+        </div>
+        <div class="spacer"></div>
+        
+        <button type="submit">Authenticate</button>
+        <p>If you were let in automatically before, please use the token generator again.</p>
+        <p><a href="why.html" style="color: azure;">Why am I seeing this?</a></p>
+    </form>
+
+
+    </div>
+    </center>
+<!--LITHIUM AUTHENTICATION SERVICES-->
+    <script>
+        // Function to authenticate token against stored token in local storage
+        function authenticateToken() {
+            const enteredToken = document.getElementById('tokenInput').value;
+            const storedToken = localStorage.getItem('authToken');
+
+            if (enteredToken === storedToken) {
+                window.location.href = 'home.html';
+
+                
+
+
+
+            } else {
+                alert('Authentication failed. Please try again.'); // Show authentication failure message (for demonstration)
+            }
+        }
+
+        // Check if token exists in local storage, if not, prompt for token
+        window.onload = function() {
+            const storedToken = localStorage.getItem('authToken');
+            if (!storedToken) {
+                document.getElementById('tokenForm').addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent form submission
+                    authenticateToken();
+                });
+                // Once the user enters and stores the token, it will be used for subsequent visits
+            } else {
+                // Token already exists, show the hidden content
+                document.getElementById('content').style.display = 'block';
+                window.location.href = 'home.html';
+
+                
+            }
+        };
+        
+    </script>
+</body>
+</html>

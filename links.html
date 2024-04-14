@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lithium PLUS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    button { background-color: rgb(129, 35, 136); border-radius: 12px; width: 120px; color: azure; border-style: solid; border-color: rgb(193, 73, 201);}
+</style>
+<body>
+    <center>
+
+
+
+
+
+    
+    </center>
+<!--LITHIUM AUTHENTICATION SERVICES-->
+    <script>
+         function authenticateToken() {
+            const enteredToken = document.getElementById('tokenInput').value;
+            const storedToken = localStorage.getItem('authToken');
+
+            if (enteredToken === storedToken) {
+                
+
+                // Optionally, redirect to another page or perform any other action here
+            } else {
+                window.location.href = 'index.html'; // Show authentication failure message (for demonstration)
+            }
+        }
+
+        // Check if token exists in local storage, if not, redirect to another page
+        window.onload = function() {
+            const storedToken = localStorage.getItem('authToken');
+            if (!storedToken) {
+                window.location.href = 'index.html'; // Redirect to another page if token doesn't exist
+            } else {
+                // Token already exists, hide the authentication form
+
+            }
+        };
+
+        // Add event listener for form submission
+        document.getElementById('tokenForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+            authenticateToken();
+        });
+    </script>
+</body>
+</html>
